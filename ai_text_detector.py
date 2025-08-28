@@ -2,25 +2,64 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import os
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.linear_model import LogisticRegression
-from sklearn.svm import SVC
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.sequence import pad_sequences
 import joblib
+import pickle
+from transformers import pipeline
+import torch
 
-# Load pre-trained models and vectorizers (excluding SVM for now)
+# Load pre-trained Hugging Face models
 @st.cache_resource
-def load_resources():
+def load_hf_models():
+    """Load the three Hugging Face AI detection models"""
     try:
-        tfidf_vectorizer = joblib.load("tfidf_vectorizer.pkl")
-        logistic_model = joblib.load("logistic_regression_model.pkl")
-        bilstm_model = load_model("bilstm_model.h5")
-        return tfidf_vectorizer, logistic_model, bilstm_model
+        # Load model configurations
+        with open("models/model_configs.pkl", "rb") as f:
+            model_configs = pickle.load(f)
+        
+        # Load model info
+        model_info = joblib.load("model_info.pkl")
+        
+        return model_configs, model_info
     except FileNotFoundError as e:
         st.error(f"Model files not found: {e}")
-        st.error("Please run the notebook first to train and save the models!")
-        return None, None, None
+        st.error("Please run the notebook first to load and save the models!")
+        return None, None
+
+# Initialize models
+@st.cache_resource
+def initialize_pipelines():
+    """Initialize the AI detection pipelines"""
+    pipelines = {}
+    
+    try:
+        # Desklib AI Text Detector
+        pipelines['desklib'] = pipeline(
+            "text-classification", 
+            model="desklib/ai-text-detector-v1.01",
+            max_length=512,
+            truncation=True
+        )
+        
+        # ChatGPT Detector RoBERTa
+        pipelines['chatgpt'] = pipeline(
+            "text-classification", 
+            model="Hello-SimpleAI/chatgpt-detector-roberta",
+            max_length=512,
+            truncation=True
+        )
+        
+        # OpenAI Community RoBERTa
+        pipelines['openai'] = pipeline(
+            "text-classification", 
+            model="openai-community/roberta-base-openai-detector",
+            max_length=512,
+            truncation=True
+        )
+        
+        return pipelines
+    except Exception as e:
+        st.error(f"Error loading models: {e}")
+        return {}
 
 # Clear cache button
 if st.button("Clear Cache and Reload Models"):

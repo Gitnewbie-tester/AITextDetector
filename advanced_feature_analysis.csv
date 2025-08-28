@@ -1,0 +1,9 @@
+Feature,AI Mean,Human Mean,Difference,AI Higher
+Ai Pattern Count,5.997,1.203,4.794,✅
+Human Pattern Count,1.458,3.179,-1.721,❌
+Flesch Reading Ease,28.366,57.016,-28.650,❌
+Avg Sentence Length,24.626,23.680,0.946,✅
+Vocabulary Diversity,0.428,0.397,0.031,✅
+Sentiment Compound,0.993,0.660,0.332,✅
+Long Word Ratio,0.325,0.190,0.135,✅
+Punctuation Ratio,0.024,0.021,0.002,✅

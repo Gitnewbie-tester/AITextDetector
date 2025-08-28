@@ -1,0 +1,108 @@
+{
+  "timestamp": "2025-08-27 00:45:36",
+  "models": {
+    "chatgpt_detector_roberta": {
+      "model_name": "ChatGPT Detector RoBERTa",
+      "model_id": "Hello-SimpleAI/chatgpt-detector-roberta",
+      "evaluation_time": 72.92039060592651,
+      "samples_evaluated": 1000,
+      "samples_per_second": 13.713585345478474,
+      "metrics": {
+        "accuracy": 0.4,
+        "precision": 0.8117154811715481,
+        "recall": 0.2590120160213618,
+        "f1_score": 0.39271255060728744
+      },
+      "confusion_matrix": [
+        [
+          206,
+          45
+        ],
+        [
+          555,
+          194
+        ]
+      ],
+      "classification_report": {
+        "Human": {
+          "precision": 0.2706964520367937,
+          "recall": 0.8207171314741036,
+          "f1-score": 0.40711462450592883,
+          "support": 251.0
+        },
+        "AI": {
+          "precision": 0.8117154811715481,
+          "recall": 0.2590120160213618,
+          "f1-score": 0.39271255060728744,
+          "support": 749.0
+        },
+        "accuracy": 0.4,
+        "macro avg": {
+          "precision": 0.5412059666041709,
+          "recall": 0.5398645737477328,
+          "f1-score": 0.3999135875566081,
+          "support": 1000.0
+        },
+        "weighted avg": {
+          "precision": 0.6759197048587247,
+          "recall": 0.4,
+          "f1-score": 0.39632747115584643,
+          "support": 1000.0
+        }
+      },
+      "sample_results_saved": "chatgpt_detector_roberta_detailed_results.csv"
+    },
+    "openai_community_roberta": {
+      "model_name": "OpenAI Community RoBERTa",
+      "model_id": "openai-community/roberta-base-openai-detector",
+      "evaluation_time": 71.11765432357788,
+      "samples_evaluated": 1000,
+      "samples_per_second": 14.061206173225353,
+      "metrics": {
+        "accuracy": 0.536,
+        "precision": 0.8701298701298701,
+        "recall": 0.4472630173564753,
+        "f1_score": 0.5908289241622575
+      },
+      "confusion_matrix": [
+        [
+          201,
+          50
+        ],
+        [
+          414,
+          335
+        ]
+      ],
+      "classification_report": {
+        "Human": {
+          "precision": 0.32682926829268294,
+          "recall": 0.8007968127490039,
+          "f1-score": 0.46420323325635104,
+          "support": 251.0
+        },
+        "AI": {
+          "precision": 0.8701298701298701,
+          "recall": 0.4472630173564753,
+          "f1-score": 0.5908289241622575,
+          "support": 749.0
+        },
+        "accuracy": 0.536,
+        "macro avg": {
+          "precision": 0.5984795692112765,
+          "recall": 0.6240299150527396,
+          "f1-score": 0.5275160787093043,
+          "support": 1000.0
+        },
+        "weighted avg": {
+          "precision": 0.7337614190687362,
+          "recall": 0.536,
+          "f1-score": 0.5590458757448751,
+          "support": 1000.0
+        }
+      },
+      "sample_results_saved": "openai_community_roberta_detailed_results.csv"
+    }
+  },
+  "overall_summary": {}
+}
